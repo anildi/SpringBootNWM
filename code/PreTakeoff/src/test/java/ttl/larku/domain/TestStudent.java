@@ -1,4 +1,4 @@
-package ttl.domain;
+package ttl.larku.domain;
 
 import java.time.LocalDate;
 import java.util.Objects;
