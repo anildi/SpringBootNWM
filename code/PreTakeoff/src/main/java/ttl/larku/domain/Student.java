@@ -6,7 +6,8 @@ import java.time.LocalDate;
 //Parttime
 //Hibernating
 
-public class Student {
+public class Student implements Comparable<Student> {
+
    public enum Status {
       FULL_TIME,
       PART_TIME,
@@ -79,17 +80,24 @@ public class Student {
    @Override
    public String toString() {
       return "Student{" +
-            "dob=" + dob +
-            ", id=" + id +
+            "id=" + id +
+            ", dob=" + dob +
             ", name='" + name + '\'' +
             ", phoneNumber='" + phoneNumber + '\'' +
             ", status=" + status +
             '}';
    }
 
-//   public String toString() {
-//      return "id: " + id + ", name: " + name + ", phoneNumber: " + phoneNumber + ", dob: " + dob;
-//   }
+   @Override
+   public int compareTo(Student other) {
+//      if(this.id < other.id) {
+//         return -1;
+//      } else if(this.id > other.id) {
+//         return 1;
+//      }
+//      return 0;
+      return Integer.compare(this.id, other.id);
+   }
 }
 
 

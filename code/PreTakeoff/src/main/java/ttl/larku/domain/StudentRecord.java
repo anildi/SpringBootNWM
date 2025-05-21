@@ -8,6 +8,7 @@ public record StudentRecord(int id, String name, String phoneNumber,
    public StudentRecord(String name, String phoneNumber,
                         LocalDate dob, Status status) {
       this(0, name, phoneNumber, dob, status);
+
    }
 
 
