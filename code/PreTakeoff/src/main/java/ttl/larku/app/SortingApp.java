@@ -78,7 +78,7 @@ public class SortingApp {
    public static int compareByNameAndDob(Student o1, Student o2) {
       int i =  o1.getName().compareTo(o2.getName());
       if(i == 0) {
-         i = o2.getDob().compareTo(o1.getDob());
+         i = o1.getDob().compareTo(o2.getDob());
       }
       return i;
    }
