@@ -185,7 +185,7 @@ public class FilterDemo {
       );
 
 //      students.forEach(student -> service.addStudent(student));
-      students.forEach(service::addStudent);
+//      students.forEach(service::addStudent);
    }
 
 
