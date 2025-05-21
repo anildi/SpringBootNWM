@@ -19,12 +19,11 @@ public class Student {
    private LocalDate dob;
    private Status status;
 
-   public Student(int id, String name, LocalDate dob, Status status, String phoneNumber) {
+   public Student(String name, LocalDate dob, Status status, String phoneNumber) {
       if(name == null || dob == null) {
          throw new IllegalArgumentException("Args must not be null");
       }
 
-      this.id = id;
       this.name = name;
       this.status = status;
       this.dob = dob;
@@ -32,8 +31,8 @@ public class Student {
 
    }
 
-   public Student(int id, String name, LocalDate dob) {
-      this(id, name, dob, Status.FULL_TIME, null);
+   public Student(String name, LocalDate dob) {
+      this(name, dob, Status.FULL_TIME, null);
    }
 
 

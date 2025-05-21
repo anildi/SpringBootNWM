@@ -1,4 +1,4 @@
-package ttl.track.dao;
+package ttl.larku.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,8 +13,12 @@ public class InMemoryStudentDAO {
 //   private List<Student> studentsl = new ArrayList<>();
    private Map<Integer, Student> students = new HashMap<>();
 //   private Set<Student> studentSet = new HashSet<>();
+   private int nextId = 1;
 
    public Student insert(Student student) {
+      int id = nextId++;
+
+      student.setId(id);
       students.put(student.getId(), student);
       return student;
    }

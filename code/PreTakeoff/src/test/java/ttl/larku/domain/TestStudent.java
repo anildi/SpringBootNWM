@@ -15,12 +15,7 @@ public class TestStudent {
       String name = "Joey";
       LocalDate dob = LocalDate.of(2000, 10, 10);
       String phone = "383 93 393939";
-      Student student = new Student(1, name, dob, Student.Status.HIBERNATING, phone);
-
-//      student.setId(1);
-//      student.setName(name);
-////      student.setDob(dob);
-//      student.setPhoneNumber("383 92 303030303");
+      Student student = new Student(name, dob, Student.Status.HIBERNATING, phone);
 
       LocalDate ld = student.getDob();
       int month = ld.getMonthValue();
@@ -37,7 +32,7 @@ public class TestStudent {
       String phone = "383 93 393939";
       Student.Status status = Student.Status.FULL_TIME;
 
-      Student student = new Student(1, name, dob);
+      Student student = new Student(name, dob);
 
       System.out.println("Student: " + student);
 

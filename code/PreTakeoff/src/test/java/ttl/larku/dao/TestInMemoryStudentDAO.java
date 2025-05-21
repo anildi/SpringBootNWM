@@ -1,7 +1,8 @@
-package ttl.track.dao;
+package ttl.larku.dao;
 
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
+import ttl.larku.dao.InMemoryStudentDAO;
 import ttl.larku.domain.Student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,11 +15,12 @@ public class TestInMemoryStudentDAO {
 
    @Test
    public void testInsertStudent() {
-      Student student = new Student(10, "Sammy", LocalDate.of(1987, 4, 4));
+      Student student = new Student("Sammy", LocalDate.of(1987, 4, 4));
 
       Student saved = dao.insert(student);
 
       assertEquals(student.getName(), saved.getName());
+      assertEquals(1, saved.getId());
 
       Student retrieved = dao.findById(saved.getId());
       assertEquals(student.getName(), retrieved.getName());
@@ -26,7 +28,7 @@ public class TestInMemoryStudentDAO {
 
    @Test
    public void testDeleteExistingStudent() {
-      Student student = new Student(10, "Sammy", LocalDate.of(1987, 4, 4));
+      Student student = new Student("Sammy", LocalDate.of(1987, 4, 4));
 
       Student saved = dao.insert(student);
 
