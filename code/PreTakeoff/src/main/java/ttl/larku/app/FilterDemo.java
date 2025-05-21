@@ -188,4 +188,8 @@ public class FilterDemo {
       students.forEach(service::addStudent);
    }
 
+
+   public void fun() {
+
+   }
 }
