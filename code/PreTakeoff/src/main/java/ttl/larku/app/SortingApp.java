@@ -7,6 +7,8 @@ import java.util.List;
 import ttl.larku.domain.Student;
 import ttl.larku.service.StudentService;
 
+import static java.lang.System.out;
+
 public class SortingApp {
 
    public static void main(String[] args) {
@@ -22,9 +24,9 @@ public class SortingApp {
 
       Collections.sort(students);
 
-      System.out.println("students.size: " + students.size());
+      out.println("students.size: " + students.size());
       for(Student s: students) {
-         System.out.println(s);
+         out.println(s);
       }
    }
 
@@ -55,11 +57,30 @@ public class SortingApp {
 
 
       Collections.sort(students, nc5);
+      //public static <T> void sort(List<T> list, Comparator<T> c){}
+      Collections.sort(students, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+      Collections.sort(students, (o1, o2) -> o1.getDob().compareTo(o2.getDob()));
 
-      System.out.println("students.size: " + students.size());
+      Collections.sort(students, SortingApp::compareByNameAndDob);
+
+      out.println("students.size: " + students.size());
       for(Student s: students) {
-         System.out.println(s);
+         out.println(s);
       }
+
+      //void accept(T t)
+      students.forEach(out::println);
+
+      List<String> ls = List.of("a", "b", "c", "d");
+      ls.forEach(out::println);
+   }
+
+   public static int compareByNameAndDob(Student o1, Student o2) {
+      int i =  o1.getName().compareTo(o2.getName());
+      if(i == 0) {
+         i = o2.getDob().compareTo(o1.getDob());
+      }
+      return i;
    }
 
 
@@ -77,7 +98,6 @@ public class SortingApp {
 
 //   public static void sortS(List<String> list) {}
 
-   public static <T> void mysort(List<T> list, Comparator<T> c){}
 
    public static <T extends Comparable<T>> void mysort(List<T> list) {}
 
