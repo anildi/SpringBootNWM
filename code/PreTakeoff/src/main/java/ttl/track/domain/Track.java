@@ -21,14 +21,14 @@ below.
    }
 
    private int id;
+
    private String artist;
    private String album;
    private Duration duration;
    private LocalDate releaseDate;
    private Format format;
 
-   public Track(int id, String album, String artist, Format format, Duration duration, LocalDate releaseDate) {
-      this.id = id;
+   public Track(String album, String artist, Format format, Duration duration, LocalDate releaseDate) {
       this.album = album;
       this.artist = artist;
       this.format = format;

@@ -10,9 +10,9 @@ public class TestTrack {
 
    @Test
    public void testTrackConstruction() {
-      Track track = new Track(10, "Silent Moon", "Franny Mcdonald", Track.Format.MP3,
+      Track track = new Track("Silent Moon", "Franny Mcdonald", Track.Format.MP3,
             Duration.ofMinutes(2).plusSeconds(30), LocalDate.of(1975, 5, 5));
 
-      assertEquals(10, track.getId());
+      assertEquals(0, track.getId());
    }
 }
