@@ -3,8 +3,6 @@ package ttl.larku.app;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +24,7 @@ public class FilterDemo {
 
    public void filter1() {
       StudentService service = new StudentService();
-      initService(service);
+      blahDeBlah(service);
 
       List<Student> students = service.getAllStudents();
 
@@ -38,7 +36,7 @@ public class FilterDemo {
 
    public void filter2() {
       StudentService service = new StudentService();
-      initService(service);
+      blahDeBlah(service);
 
       List<Student> students = service.getAllStudents();
 
@@ -61,7 +59,7 @@ public class FilterDemo {
 
    public void filter3() {
       StudentService service = new StudentService();
-      initService(service);
+      blahDeBlah(service);
 
       List<Student> students = service.getAllStudents();
 
@@ -81,7 +79,7 @@ public class FilterDemo {
 
    public void filter4() {
       StudentService service = new StudentService();
-      initService(service);
+      blahDeBlah(service);
 
       Map<String, String> map = Map.of("1", "one",
             "2", "two",
@@ -174,7 +172,7 @@ public class FilterDemo {
       return result;
    }
 
-   public static void initService(StudentService service) {
+   public static void blahDeBlah(StudentService service) {
       var students = List.of(
             new Student("Johnny", LocalDate.of(1990, 10, 5), Student.Status.HIBERNATING, "383 83833 38"),
             new Student("Rachna", LocalDate.of(1960, 10, 8), Student.Status.FULL_TIME, "383 83833 38"),
@@ -185,11 +183,6 @@ public class FilterDemo {
       );
 
 //      students.forEach(student -> service.addStudent(student));
-//      students.forEach(service::addStudent);
-   }
-
-
-   public void fun() {
-
+      students.forEach(service::addStudent);
    }
 }
