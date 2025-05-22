@@ -2,13 +2,24 @@ package ttl.larku.service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
+import ttl.larku.dao.DAOFactory;
 import ttl.larku.dao.InMemoryStudentDAO;
+import ttl.larku.dao.JPAStudentDAO;
+import ttl.larku.dao.StudentDAO;
 import ttl.larku.domain.Student;
 
 public class StudentService {
 
-   InMemoryStudentDAO dao = new InMemoryStudentDAO();
+   List<String> list = new ArrayList<>();
+
+//   StudentDAO dao = new InMemoryStudentDAO();
+//   StudentDAO dao = new JPAStudentDAO();
+   StudentDAO dao = DAOFactory.getStudentDAO();
+
+//   InMemoryStudentDAO dao = new InMemoryStudentDAO();
+//   JPAStudentDAO dao = new JPAStudentDAO();
 
    public Student addStudent(Student student) {
       long age = student.getDob().until(LocalDate.now(), ChronoUnit.YEARS);
@@ -35,4 +46,10 @@ public class StudentService {
    public List<Student> getAllStudents() {
       return dao.findAll();
    }
+
+//   public JPAStudentDAO getStudentDAO() {
+   public StudentDAO getStudentDAO() {
+      return dao;
+   }
+
 }
