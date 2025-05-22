@@ -61,6 +61,16 @@ public class SortingApp {
       Collections.sort(students, (o1, o2) -> o1.getName().compareTo(o2.getName()));
       Collections.sort(students, (o1, o2) -> o1.getDob().compareTo(o2.getDob()));
 
+      Collections.sort(students, (o1, o2) ->{
+         int i =  o1.getName().compareTo(o2.getName());
+         if(i == 0) {
+            i = o1.getDob().compareTo(o2.getDob());
+         }
+         return i;
+      });
+
+      Collections.sort(students, (o1, o2) -> compareByNameAndDob(o1, o2));
+
       Collections.sort(students, SortingApp::compareByNameAndDob);
 
       out.println("students.size: " + students.size());
@@ -69,10 +79,18 @@ public class SortingApp {
       }
 
       //void accept(T t)
-      students.forEach(out::println);
+      students.forEach(s -> out.println(s));
+
+      //students.forEach(out::println);
+      students.forEach(SortingApp::prettyPrint);
 
       List<String> ls = List.of("a", "b", "c", "d");
       ls.forEach(out::println);
+   }
+
+
+   public static void prettyPrint(Student student) {
+      out.println("[" + student + "]");
    }
 
    public static int compareByNameAndDob(Student o1, Student o2) {
@@ -97,6 +115,8 @@ public class SortingApp {
    }
 
 //   public static void sortS(List<String> list) {}
+
+   public static <T> void mySort(List<T> list, Comparator<T> comp) {}
 
 
    public static <T extends Comparable<T>> void mysort(List<T> list) {}
