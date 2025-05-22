@@ -16,10 +16,11 @@ public class StudentService {
 
 //   StudentDAO dao = new InMemoryStudentDAO();
 //   StudentDAO dao = new JPAStudentDAO();
-   StudentDAO dao = DAOFactory.getStudentDAO();
+   private StudentDAO dao;
 
-//   InMemoryStudentDAO dao = new InMemoryStudentDAO();
-//   JPAStudentDAO dao = new JPAStudentDAO();
+   public StudentService() {
+      int stop = 0;
+   }
 
    public Student addStudent(Student student) {
       long age = student.getDob().until(LocalDate.now(), ChronoUnit.YEARS);
@@ -50,6 +51,10 @@ public class StudentService {
 //   public JPAStudentDAO getStudentDAO() {
    public StudentDAO getStudentDAO() {
       return dao;
+   }
+
+   public void setStudentDAO(StudentDAO dao) {
+      this.dao = dao;
    }
 
 }

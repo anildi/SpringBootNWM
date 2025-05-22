@@ -6,20 +6,28 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import ttl.larku.domain.Student;
 
 public class InMemoryStudentDAO implements StudentDAO {
 
 //   private List<Student> studentsl = new ArrayList<>();
    //TODO - fix for Concurrency
-   private Map<Integer, Student> students = new HashMap<>();
+   private Map<Integer, Student> students = new ConcurrentHashMap<>();
 //   private Set<Student> studentSet = new HashSet<>();
    //TODO - fix for Concurrency
-   private int nextId = 1;
+//   private int nextId = 1;
+   private AtomicInteger nextId = new AtomicInteger(1);
+
+   public InMemoryStudentDAO() {
+      int stop = 0;
+   }
 
    @Override
    public Student insert(Student student) {
-      int id = nextId++;
+//      int id = nextId++;
+      int id = nextId.getAndIncrement();
 
       student.setId(id);
       students.put(student.getId(), student);
