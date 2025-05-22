@@ -13,10 +13,10 @@ import ttl.larku.service.StudentService;
 
 import static java.lang.System.out;
 
-public class FilterDemo {
+public class FilterApp {
 
    public static void main(String[] args) {
-      FilterDemo filterDemo = new FilterDemo();
+      FilterApp filterDemo = new FilterApp();
 //      filterDemo.filter1();
 //      filterDemo.filter2();
 //      filterDemo.filter3();

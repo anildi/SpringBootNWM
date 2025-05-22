@@ -3,7 +3,7 @@ package ttl.track.domain;
 import java.time.Duration;
 import java.time.LocalDate;
 
-public class Track {
+public class Track implements Comparable<Track> {
    /*
    1. Id – should be unique and of type int
 2. Artist – a String
@@ -94,5 +94,10 @@ below.
             ", releaseDate=" + releaseDate +
             ", format=" + format +
             '}';
+   }
+
+   @Override
+   public int compareTo(Track o) {
+      return Integer.compare(this.id, o.id);
    }
 }
