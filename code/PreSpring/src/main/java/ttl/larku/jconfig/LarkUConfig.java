@@ -10,7 +10,7 @@ import ttl.larku.domain.Student;
 import ttl.larku.service.StudentService;
 
 @Configuration
-@ComponentScan({"ttl.larku.service"})
+@ComponentScan({"ttl.larku.service", "ttl.larku.dao"})
 public class LarkUConfig {
 
    /*
