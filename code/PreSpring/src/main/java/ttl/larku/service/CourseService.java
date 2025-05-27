@@ -2,14 +2,17 @@ package ttl.larku.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Course;
 
+@Component
 public class CourseService {
 
     private BaseDAO<Course> courseDAO;
 
     public CourseService() {
+        int stop = 0;
     }
 
     public Course createCourse(String code, String title) {

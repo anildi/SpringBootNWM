@@ -19,7 +19,7 @@ public class SpringApp {
 //      StudentService studentService = (StudentService) context.getBean("studentService");
       StudentService studentService = context.getBean("studentService", StudentService.class);
 
-      StudentService studentService2 = context.getBean("studentService", StudentService.class);
+      StudentService studentService2 = new StudentService();
 
       List<Student> students = studentService.getAllStudents();
 
