@@ -28,6 +28,17 @@ below.
    private LocalDate releaseDate;
    private Format format;
 
+   public Track() {
+      int stop = 0;
+   }
+
+   public Track(String artist, Format format, Duration duration, LocalDate releaseDate) {
+      this.artist = artist;
+      this.format = format;
+      this.duration = duration;
+      this.releaseDate = releaseDate;
+   }
+
    public Track(String album, String artist, Format format, Duration duration, LocalDate releaseDate) {
       this.album = album;
       this.artist = artist;

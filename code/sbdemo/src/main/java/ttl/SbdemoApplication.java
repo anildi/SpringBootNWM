@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 import ttl.larku.domain.Student;
 import ttl.larku.service.StudentService;
+import ttl.track.dao.TrackDB;
 import ttl.track.domain.Track;
 import ttl.track.service.TrackService;
 
@@ -55,7 +56,7 @@ class MyRunner implements CommandLineRunner {
 }
 
 
-//@Component
+@Component
 class YourRunner implements CommandLineRunner {
 
 	@Autowired
@@ -64,6 +65,8 @@ class YourRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Hello from YourRunner");
+
+		TrackDB.initTrackService(trackService);
 
 		List<Track> tracks = trackService.getAllTracks();
 
