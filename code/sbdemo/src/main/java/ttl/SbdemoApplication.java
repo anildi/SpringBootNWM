@@ -1,7 +1,6 @@
-package ttl.larku;
+package ttl;
 
 import java.util.List;
-import javax.sound.midi.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 import ttl.larku.domain.Student;
 import ttl.larku.service.StudentService;
+import ttl.track.domain.Track;
+import ttl.track.service.TrackService;
 
 @SpringBootApplication
 public class SbdemoApplication {
@@ -34,24 +35,24 @@ class MyRunner implements CommandLineRunner {
 
 		List<Student> students = studentService.getAllStudents();
 
-		System.out.println(students);
+		System.out.println("Students: " + students);
 	}
 }
 
 
-//@Component
-//class YourRunner implements CommandLineRunner {
-//
-//	@Autowired
-//	private TrackService trackService;
-//
-//	@Override
-//	public void run(String... args) throws Exception {
-//		System.out.println("Hello from MyRunner");
-//
-//		List<Track> tracks = trackService.getAllTracks();
-//
-//		System.out.println(tracks);
-//	}
-//}
+@Component
+class YourRunner implements CommandLineRunner {
+
+	@Autowired
+	private TrackService trackService;
+
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println("Hello from YourRunner");
+
+		List<Track> tracks = trackService.getAllTracks();
+
+		System.out.println("Tracks: " + tracks);
+	}
+}
 
