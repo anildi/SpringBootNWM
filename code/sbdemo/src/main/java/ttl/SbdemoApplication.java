@@ -1,5 +1,6 @@
 package ttl;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -33,14 +34,28 @@ class MyRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Hello from MyRunner");
 
+		initService(studentService);
+
 		List<Student> students = studentService.getAllStudents();
 
 		System.out.println("Students: " + students);
 	}
+
+	public static void initService(StudentService service) {
+		var students = List.of(
+				new Student("Johnny", "383 93 39 20202",  LocalDate.of(1990, 10, 5), Student.Status.HIBERNATING),
+				new Student("Rachna", "484 065 0606393", LocalDate.of(1960, 10, 8), Student.Status.FULL_TIME),
+				new Student("Pheroze", "3483 9339 320", LocalDate.of(1947, 8, 16), Student.Status.FULL_TIME),
+				new Student("Gunnar", "38 090-0-65", LocalDate.of(1980, 5, 5), Student.Status.PART_TIME),
+				new Student("Isabella", "987-9876-3938", LocalDate.of(2000, 10, 5), Student.Status.HIBERNATING)
+		);
+
+		students.forEach(service::createStudent);
+	}
 }
 
 
-@Component
+//@Component
 class YourRunner implements CommandLineRunner {
 
 	@Autowired
