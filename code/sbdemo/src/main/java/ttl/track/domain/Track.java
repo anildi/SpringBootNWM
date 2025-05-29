@@ -34,12 +34,12 @@ below.
 //      int stop = 0;
 //   }
 
-   public Track(String artist, Format format, Duration duration, LocalDate releaseDate) {
-      this.artist = artist;
-      this.format = format;
-      this.duration = duration;
-      this.releaseDate = releaseDate;
-   }
+//   public Track(String artist, Format format, Duration duration, LocalDate releaseDate) {
+//      this.artist = artist;
+//      this.format = format;
+//      this.duration = duration;
+//      this.releaseDate = releaseDate;
+//   }
 
    public Track(String album, String artist, Format format, Duration duration, LocalDate releaseDate) {
       this.album = album;
@@ -101,9 +101,6 @@ below.
       return blah;
    }
 
-   public void setBlah(String blah) {
-      this.blah = blah;
-   }
 
    @Override
    public String toString() {
@@ -114,6 +111,7 @@ below.
             ", duration=" + duration +
             ", releaseDate=" + releaseDate +
             ", format=" + format +
+            ", blah=" + blah +
             '}';
    }
 

@@ -1,15 +1,22 @@
 package ttl.larku.controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ttl.larku.domain.Student;
 import ttl.larku.domain.StudentRecord;
 import ttl.larku.service.StudentService;
@@ -30,22 +37,59 @@ public class StudentController {
    }
 
    @GetMapping("/{id}")
-   public Student getStudent(@PathVariable("id") int id) {
-     Student student = studentService.getStudent(id);
-     return student;
+   public ResponseEntity<?> getStudent(@PathVariable("id") int id) {
+      Student student = studentService.getStudent(id);
+      if (student == null) {
+         var r = ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Student with id: " + id);
+
+         return r;
+      }
+      return ResponseEntity.ok(student);
    }
 
    @PostMapping
-   public Student addStudent(@RequestBody Student student,
+   public ResponseEntity<Student> addStudent(@RequestBody Student student,
                              @RequestHeader Map<String, String> header) {
       Student newStudent = studentService.createStudent(student);
-      return newStudent;
+
+      //http://localhost:8080/student/ + newStudent.getId();
+
+      URI newResource = ServletUriComponentsBuilder
+            .fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(newStudent.getId())
+            .toUri();
+
+//      return ResponseEntity.created(newResource).body(newStudent);
+      return ResponseEntity.created(newResource).build();
    }
 
-   @PostMapping("/record")
-   public StudentRecord addStudent(@RequestBody StudentRecord student,
-                             @RequestHeader Map<String, String> header) {
-      int stop = 0;
-      return student;
+   @DeleteMapping("/{id}")
+   public ResponseEntity<?> deleteStudent(@PathVariable int id) {
+      boolean result = studentService.deleteStudent(id);
+      if(result) {
+         return ResponseEntity.noContent().build();
+      }
+
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Student with id: " + id);
    }
+
+   @PutMapping
+   public ResponseEntity<?> upateStudent(@RequestBody Student student) {
+      boolean result = studentService.updateStudent(student);
+      if(result) {
+         return ResponseEntity.noContent().build();
+      }
+
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Student with id: " + student.getId());
+   }
+
 }
+
+
+//   @PostMapping("/record")
+//   public StudentRecord addStudent(@RequestBody StudentRecord student,
+//                             @RequestHeader Map<String, String> header) {
+//      int stop = 0;
+//      return student;
+//   }
