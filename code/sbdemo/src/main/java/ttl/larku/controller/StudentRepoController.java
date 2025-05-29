@@ -1,0 +1,95 @@
+package ttl.larku.controller;
+
+import java.net.URI;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ttl.larku.domain.Student;
+import ttl.larku.service.StudentRepoService;
+import ttl.larku.service.StudentService;
+
+@RestController
+@RequestMapping("/studentrepo")
+public class StudentRepoController {
+
+   @Autowired
+   private StudentRepoService studentService;
+
+   @Autowired
+   private URICreator uriCreator;
+
+   @GetMapping
+   public List<Student> getStudents() {
+      List<Student> students = studentService.getAllStudents();
+      return students;
+   }
+
+   @GetMapping("/{id}")
+   public ResponseEntity<?> getStudent(@PathVariable("id") int id) {
+      Student student = studentService.getStudent(id);
+      if (student == null) {
+         var r = ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Student with id: " + id);
+
+         return r;
+      }
+      return ResponseEntity.ok(student);
+   }
+
+   @PostMapping
+   public ResponseEntity<Student> addStudent(@RequestBody Student student,
+                             @RequestHeader Map<String, String> header) {
+      Student newStudent = studentService.createStudent(student);
+
+      //http://localhost:8080/student/ + newStudent.getId();
+
+      URI newResource = uriCreator.getURIFor(newStudent.getId());
+//      URI newResource = ServletUriComponentsBuilder
+//            .fromCurrentRequest()
+//            .path("/{id}")
+//            .buildAndExpand(newStudent.getId())
+//            .toUri();
+
+//      return ResponseEntity.created(newResource).body(newStudent);
+      return ResponseEntity.created(newResource).build();
+   }
+
+   @DeleteMapping("/{id}")
+   public ResponseEntity<?> deleteStudent(@PathVariable int id) {
+      boolean result = studentService.deleteStudent(id);
+      if(result) {
+         return ResponseEntity.noContent().build();
+      }
+
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Student with id: " + id);
+   }
+
+   @PutMapping
+   public ResponseEntity<?> upateStudent(@RequestBody Student student) {
+      boolean result = studentService.updateStudent(student);
+      if(result) {
+         return ResponseEntity.noContent().build();
+      }
+
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Student with id: " + student.getId());
+   }
+
+}
+
+
+//   @PostMapping("/record")
+//   public StudentRecord addStudent(@RequestBody StudentRecord student,
+//                             @RequestHeader Map<String, String> header) {
+//      int stop = 0;
+//      return student;
+//   }

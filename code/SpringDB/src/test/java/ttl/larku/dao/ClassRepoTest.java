@@ -124,4 +124,12 @@ public class ClassRepoTest extends SqlScriptBase {
 
         assertEquals(null, resultClass);
     }
+
+    @Test
+    public void testInsert() {
+        Course course = courseRepo.findById(1).orElse(null);
+        ScheduledClass sc = new ScheduledClass(course, LocalDate.of(2025, 10, 10), LocalDate.of(2025, 12, 10));
+
+        dao.save(sc);
+    }
 }

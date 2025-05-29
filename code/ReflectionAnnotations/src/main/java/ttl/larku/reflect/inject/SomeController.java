@@ -9,8 +9,12 @@ import ttl.larku.service.StudentService;
  */
 public class SomeController {
 
+    private int something;
+
     @MyInject
     private StudentService studentService;
+
+
 
     public void doStuff() {
         List<Student> students = studentService.getAllStudents();

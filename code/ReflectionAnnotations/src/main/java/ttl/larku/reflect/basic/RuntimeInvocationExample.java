@@ -1,5 +1,6 @@
 package ttl.larku.reflect.basic;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -23,10 +24,19 @@ public class RuntimeInvocationExample {
 
 			//Object clazzInstance = clazz.getDeclaredConstructor().newInstance();
 
-			Object clazzInstance = clazz.newInstance();
+			Constructor<?> ctor = clazz.getDeclaredConstructor(int.class);
+
+			Constructor<?> [] ctors = clazz.getDeclaredConstructors();
+			for(var c : ctors) {
+			}
+
+//			Object clazzInstance = clazz.newInstance();
+			Object clazzInstance = ctor.newInstance(10);
 
 			// Find the doStuff Method
 			Method method = clazz.getMethod("doStuff", String.class);
+
+			Method [] methods = clazz.getDeclaredMethods();
 
 			// Object result = method.invoke(clazzInstance, new
 			// Object[]{"hello" });
@@ -37,7 +47,7 @@ public class RuntimeInvocationExample {
 			// print the results
 			System.out.println(className + " dostuff result: " + result);
 
-			//messWithFields(clazzInstance, clazz);
+			messWithFields(clazzInstance, clazz);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,8 +71,9 @@ public class RuntimeInvocationExample {
 		for (Field f : allFields) {
 			System.out.println(f);
 		}
-
+		//oc.i = 100;
 		Field field = clazz.getDeclaredField("i");
+		field.setAccessible(true);
 		field.set(clazzInstance, 100);
 	}
 }
@@ -70,8 +81,8 @@ public class RuntimeInvocationExample {
 class OtherClass {
 	private int i = 0;
 
-	public OtherClass() {
-	}
+//	public OtherClass() {
+//	}
 
 	public OtherClass(int x) {
 		i = x;
