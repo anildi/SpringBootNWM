@@ -28,9 +28,11 @@ below.
    private LocalDate releaseDate;
    private Format format;
 
-   public Track() {
-      int stop = 0;
-   }
+   private String blah;
+
+//   public Track() {
+//      int stop = 0;
+//   }
 
    public Track(String artist, Format format, Duration duration, LocalDate releaseDate) {
       this.artist = artist;
@@ -93,6 +95,14 @@ below.
 
    public void setFormat(Format format) {
       this.format = format;
+   }
+
+   public String getBlah() {
+      return blah;
+   }
+
+   public void setBlah(String blah) {
+      this.blah = blah;
    }
 
    @Override

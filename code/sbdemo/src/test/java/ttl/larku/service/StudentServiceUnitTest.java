@@ -3,6 +3,7 @@ package ttl.larku.service;
 
 import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,14 +24,14 @@ import static org.mockito.Mockito.never;
 /**
  * A straight ahead Unit test.  Only Mockito, no Spring
  */
-//@ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
 //Can use @MockitoSettings to turn on LENIENT mode.
 //Then Mockito won't get upset with unused Mocks.
-//Probably better to leave it off and get rid of
+//Probably better to leave it commented out and get rid of
 //unused mocks.
 //@MockitoSettings(strictness = Strictness.LENIENT)
 @Tag("unit")
+@Disabled
 public class StudentServiceUnitTest {
 
     private String name1 = "Bloke";

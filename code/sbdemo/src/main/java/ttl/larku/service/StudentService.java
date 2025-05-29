@@ -2,11 +2,13 @@ package ttl.larku.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Student;
 
 public class StudentService {
 
+    @Autowired
     private BaseDAO<Student> studentDAO;
 
     public StudentService() {

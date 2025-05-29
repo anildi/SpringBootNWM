@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -14,11 +15,7 @@ import ttl.larku.jconfig.LarkUConfig;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
-//@ExtendWith(SpringExtension.class)
-////@ContextConfiguration({ "classpath:applicationContext.xml" })
-//@ContextConfiguration(classes = LarkUConfig.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class StudentServiceTest {
 
     private String name1 = "Bloke";
@@ -30,11 +27,15 @@ public class StudentServiceTest {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private ApplicationContext context;
+
     @BeforeEach
     public void setup() {
         //studentService = new StudentService();
         //studentService = applicationContext.getBean("studentService", StudentService.class);
         studentService.clear();
+        System.out.println("Num Beans in StudentServiceTest: " + context.getBeanDefinitionCount());
     }
 
     @Test

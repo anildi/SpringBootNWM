@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -33,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Transactional
 @Tag("container")
 @Disabled
+@ActiveProfiles({"mysql", "production"})
 public class StudentRepoMysqlContainerTest {
 
     private String name1 = "Bloke";

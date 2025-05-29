@@ -1,11 +1,15 @@
 package ttl.larku.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Course;
 
+@Service
 public class CourseService {
 
+    @Autowired
     private BaseDAO<Course> courseDAO;
 
     public CourseService() {

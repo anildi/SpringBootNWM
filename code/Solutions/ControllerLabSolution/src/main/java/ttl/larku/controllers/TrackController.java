@@ -34,7 +34,7 @@ public class TrackController {
     /**
      * A very simple example of passing in query parameters to specify search criteria.
      * Should be called like: http://localhost:8080/track?title=Blah%20Blah%20Blah&album=OtherBlah.
-     * We capture all the passed in parameters, if any.  Look in the service and DAO to
+     * We capture all the passed in parameters, if any.  Look in the service and DAO to see
      * how we process them.
      *
      * @param queryStrings the query params in a map
@@ -43,7 +43,7 @@ public class TrackController {
     @GetMapping
     public ResponseEntity<?> getAllTracks(@RequestParam Map<String, String> queryStrings) {
         List<Track> tracks = null;
-        if(queryStrings.size() == 0) {
+        if(queryStrings.isEmpty()) {
             tracks = trackService.getAllTracks();
         } else {
             tracks = trackService.getTracksBy(queryStrings);

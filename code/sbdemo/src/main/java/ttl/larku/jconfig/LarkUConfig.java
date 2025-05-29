@@ -17,7 +17,7 @@ import ttl.larku.service.CourseService;
 import ttl.larku.service.StudentService;
 
 @Configuration
-//@ComponentScan({"ttl.larku.service", "ttl.larku.dao"})
+@ComponentScan({"ttl"})
 //@PropertySource({"classpath:/larkUContext.properties"})
 public class LarkUConfig {
 
@@ -68,7 +68,7 @@ public class LarkUConfig {
 
 
 
-    @Bean
+//    @Bean
     public CourseService courseService() {
         CourseService cc = new CourseService();
         cc.setCourseDAO(courseDAO());

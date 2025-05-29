@@ -105,8 +105,7 @@ public class TrackService {
         Track track = trackDAO.get(id);
         if (track != null) {
             Class<?> clazz = Track.class;
-            Map<String, Method> methods = Arrays
-                    .asList(clazz.getMethods()).stream()
+            Map<String, Method> methods = Arrays.stream(clazz.getMethods())
                     .filter(m -> m.getName().startsWith("set"))
                     .collect(Collectors.toMap(m -> m.getName(), m -> m));
 

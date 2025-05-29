@@ -5,9 +5,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ttl.larku.dao.inmemory.InMemoryCourseDAO;
 import ttl.larku.domain.Course;
 import ttl.larku.jconfig.LarkUConfig;
 
@@ -15,17 +18,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = LarkUConfig.class)
-@ActiveProfiles({"development"})
+//@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+//@ContextConfiguration(classes = { CourseService.class, InMemoryCourseDAO.class })
 public class CourseServiceTest {
 
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private ApplicationContext context;
+
     @BeforeEach
     public void setup() {
         courseService.clear();
+        System.out.println("Num Beans in CourseServiceTest: " + context.getBeanDefinitionCount());
     }
 
     @Test

@@ -134,7 +134,8 @@ public class RestClientSpringTest {
         System.out.println("raw is " + raw);
         JsonNode root = mapper.readTree(raw);
 
-        //This is to represent a List<Track>
+        //This is the Jackson way to represent a parameterized
+        //type, e.g. List<Track>
         CollectionType listType = mapper.getTypeFactory()
                 .constructCollectionType(List.class, Track.class);
 
