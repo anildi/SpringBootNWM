@@ -31,9 +31,11 @@ public class StudentControllerMVCTest {
    }
 
    @Test
-   public void testAddStudent() throws Exception {
+   public void testGetAllStudents() throws Exception {
 
-      ResultActions actions = mockMvc.perform(get("/student").accept(MediaType.APPLICATION_JSON))
+      ResultActions actions = mockMvc.perform(
+               get("/student").accept(MediaType.APPLICATION_JSON)
+            )
             .andExpect(status().isOk());
 
       MvcResult mvcResult = actions.andReturn();

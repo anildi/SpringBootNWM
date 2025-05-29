@@ -31,7 +31,6 @@ import static org.mockito.Mockito.never;
 //unused mocks.
 //@MockitoSettings(strictness = Strictness.LENIENT)
 @Tag("unit")
-@Disabled
 public class StudentServiceUnitTest {
 
     private String name1 = "Bloke";

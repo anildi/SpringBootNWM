@@ -97,9 +97,9 @@ below.
       this.format = format;
    }
 
-   public String getBlah() {
-      return blah;
-   }
+//   public String getBlah() {
+//      return blah;
+//   }
 
 
    @Override
